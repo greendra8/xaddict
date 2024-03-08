@@ -1,39 +1,25 @@
 {
-  "name": "EvieChat",
-  "version": "1.2.0",
-  "manifest_version": 3,
-  "description": "EvieChat is a ChatGPT powered personal assistant that can talk to you about anything.",
-  "homepage_url": "http://arinteli.com",
-  "permissions": [
-    "contextMenus"
-  ], 
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "default_locale": "en",
-  "action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "EvieChat",
-    "default_popup": "src/browser_action/browser_action.html"
-  },
-  "commands": {
-    "_execute_action": {
-        "suggested_key": {
-            "default": "Ctrl+Space"
+    "name": "Twitter Scroll Blocker",
+    "version": "0.0.1",
+    "manifest_version": 3,
+    "description": "Stop endless scrolling on Twitter.",
+    "homepage_url": "http://arinteli.com",
+    "icons": {
+        "48": "icons/icon48.png"
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://twitter.com/*",
+                "*://x.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
         }
-    }
-  },
-  "background": {
-    "service_worker": "src/bg/background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["src/content/content_script.js"],
-      "run_at": "document_idle"
-    }
-  ],
-  "options_page": "src/options/options.html"
+    ]
 }
